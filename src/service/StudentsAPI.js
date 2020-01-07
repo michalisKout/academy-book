@@ -4,21 +4,20 @@ class StudentsAPI {
 		this.STUDENTS_URL = '/students';
 	}
 
-	async getAllStudents(init) {
+	async getAllStudents(handler) {
 		const url = `${this.API_URL}${this.STUDENTS_URL}`;
-		try {
-			const students = await (await fetch(url)).json();
-			init(students);
-		} catch (e) {
-			console.log(e);
-		}
+		this.handlesDataFromUlr(url, handler);
 	}
 
-	async getStudentById(id, display) {
+	async getStudentById(id, handler) {
 		const url = `${this.API_URL}${this.STUDENTS_URL}/${id}`;
+		this.handlesDataFromUlr(url, handler);
+	}
+
+	async handlesDataFromUlr(url, handler) {
 		try {
-			const student = await (await fetch(url)).json();
-			display(student);
+			const data = await (await fetch(url)).json();
+			handler(data);
 		} catch (e) {
 			console.log(e);
 		}
