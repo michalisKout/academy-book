@@ -6,7 +6,7 @@ class StudentsController {
 		this.studentsView = studentsView;
 		this.studentsModel = studentsModel;
 		this.studentsModel.registerController(this);
-		StudentsApi.getAllStudents(this.studentsModel);
+		StudentsApi.getAllStudents(this.studentsModel.init.bind(this.studentsModel));
 		this.bindStudentEvents();
 	}
 

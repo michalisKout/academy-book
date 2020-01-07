@@ -4,11 +4,11 @@ class StudentsAPI {
 		this.STUDENTS_URL = '/students';
 	}
 
-	async getAllStudents(model) {
+	async getAllStudents(init) {
 		const url = `${this.API_URL}${this.STUDENTS_URL}`;
 		try {
 			const students = await (await fetch(url)).json();
-			model.init(students);
+			init(students);
 		} catch (e) {
 			console.log(e);
 		}
