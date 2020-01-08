@@ -1,10 +1,9 @@
-import { clearInnerContent } from '../../utils/utilities';
+import { clearInnerContent, getElementDOM } from '../utils/utilities';
 
 class Router {
 	constructor() {
 		this.routes = {};
-
-		this.rootDiv = document.getElementById('root');
+		this.rootDiv = getElementDOM('#root');
 	}
 
 	route(pathname, config) {

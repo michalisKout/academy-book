@@ -67,13 +67,22 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-
 # This is an Web application made for booking information about Agile Actors Academy's Students.
 
 > Stack
+
     - node 12.13.1
     - npm 6.12.1
     - React 16.12.0
     - Jss
     - StoryBook
     - eslint
+
+> Implemented Features :
+
+    - Search on typing by query.
+    - Custom Routing (Home, Students) pages.
+    - Filter students by academy_period.
+    - Applied mvc pattern.
+    - Applied observer pattern.
+    - Applied Singleton pattern (Router, StudentsAPI).

@@ -1,6 +1,5 @@
 import StudentsApi from '../../service/StudentsAPI';
 
-const EMPTY_STUDENT = { id: 0 };
 class StudentsController {
 	constructor(studentsView, studentsModel) {
 		this.studentsView = studentsView;

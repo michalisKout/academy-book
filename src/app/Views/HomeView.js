@@ -38,7 +38,6 @@ class HomeView {
 		if (shouldDisplayEmptySearchField) {
 			content = emptySearchResult();
 		} else {
-			console.log(student);
 			content = studentsSearchResult(student);
 		}
 
