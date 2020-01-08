@@ -1,3 +1,5 @@
+import { clearInnerContent } from '../../utils/utilities';
+
 class Router {
 	constructor() {
 		this.routes = {};
@@ -7,13 +9,17 @@ class Router {
 
 	route(pathname, config) {
 		this.routes = { ...this.routes, [pathname]: config };
-		console.log(this.routes);
+	}
+
+	getRouteConfig(key) {
+		return this.routes[key];
 	}
 
 	navigate(pathname) {
 		window.history.pushState({}, pathname, window.location.origin + pathname);
-		const { controller, view = null, model = null } = this.routes[pathname];
-		this.rootDiv.innerHTML = '';
+		const { controller, view = null, model = null } = this.getRouteConfig(pathname);
+		clearInnerContent(this.rootDiv);
+
 		new controller(view && new view(), model && new model());
 	}
 }

@@ -15,17 +15,17 @@ class StudentsController {
 
 	bindStudentEvents() {
 		StudentsApi.getAllStudents(this.studentsModel.init.bind(this.studentsModel));
-		this.studentsView.bindStudentsOnLoad(this.studentsModel.getStudents());
 		this.studentsView.bindDeleteStudent(this.studentsModel.removeStudentById.bind(this.studentsModel));
 		this.studentsView.bindSelectAcademyPeriod(this.selectPeriod);
 	}
 
+	// getUniqueAcademyPeriods() {
+	// 	const periods = this.studentsModel.getStudents().map(student => student.academy_period);
+	// 	return new Set(periods);
+	// }
+
 	selectPeriod(periodQuery, displayFn) {
-		if (periodQuery) {
-			StudentsApi.getStudentByFilter(periodQuery, displayFn);
-		} else {
-			displayFn(EMPTY_STUDENT);
-		}
+		StudentsApi.getStudentByFilter(periodQuery, displayFn);
 	}
 }
 
