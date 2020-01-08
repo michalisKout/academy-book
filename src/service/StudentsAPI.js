@@ -9,8 +9,8 @@ class StudentsAPI {
 		this.handlesDataFromUlr(url, handler);
 	}
 
-	async getStudentById(id, handler) {
-		const url = `${this.API_URL}${this.STUDENTS_URL}/${id}`;
+	async getStudentByQuery(searchText, handler) {
+		const url = `${this.API_URL}${this.STUDENTS_URL}?q=${searchText}`;
 		this.handlesDataFromUlr(url, handler);
 	}
 
