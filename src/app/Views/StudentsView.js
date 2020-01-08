@@ -4,9 +4,10 @@ import {
 	constructElement,
 	studentElement,
 	clearInnerContent,
-	studentFilters
+	studentFilters,
+	getPeriodQueryById
 } from '../../utils/utilities';
-import { PERIODS, STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT } from '../../utils/config';
+import { PERIODS, STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT, STUDENTS_FILTER_ID } from '../../utils/config';
 
 class StudentsView {
 	constructor() {
@@ -28,6 +29,15 @@ class StudentsView {
 			if (targetElementId === DELETE_STUDENT) {
 				handler(event.target.dataset.id);
 			}
+		});
+	}
+
+	bindSelectAcademyPeriod(handler) {
+		getElementDOM(STUDENTS_FILTER_ID).addEventListener(EVENT_TYPES.CHANGE, event => {
+			const periodId = event.target.value;
+			console.log(getPeriodQueryById(periodId));
+			console.log(periodId);
+			handler(getPeriodQueryById(periodId), this.displayAllStudents);
 		});
 	}
 

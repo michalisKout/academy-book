@@ -14,9 +14,16 @@ class StudentsAPI {
 		this.handlesDataFromUlr(url, handler);
 	}
 
+	async getStudentByFilter(filterQuery, handler) {
+		const url = `${this.API_URL}${this.STUDENTS_URL}?academy_period_like=${filterQuery}`;
+		console.log(url);
+		this.handlesDataFromUlr(url, handler);
+	}
+
 	async handlesDataFromUlr(url, handler) {
 		try {
 			const data = await (await fetch(url)).json();
+			console.log(data);
 			handler(data);
 		} catch (e) {
 			console.log(e);

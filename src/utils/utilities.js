@@ -58,13 +58,14 @@ export const clearInnerContent = element => {
 
 export const studentFilters = (academyPeriods = []) => {
 	const periodOptions = academyPeriods.map(
-		periodName => `<option id="period_${getPeriodId(periodName)}">${displayPeriod(periodName)}</option>`
+		periodName => `<option value="${getPeriodId(periodName)}">${displayPeriod(periodName)}</option>`
 	);
 	return `<select id="student-filters">
+			<option value="">ALL STUDENTS</option>
 			${removesCommasFromElementList(periodOptions)}
 		</select>`;
 };
-
+export const getPeriodQueryById = periodId => periodId.split('_').join(' ');
 const displayPeriod = periodName => periodName.toUpperCase();
 const getPeriodId = periodName =>
 	periodName
