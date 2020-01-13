@@ -4,16 +4,22 @@ import {
 	constructElement,
 	studentElement,
 	clearInnerContent,
-	studentFilters,
-	getPeriodQueryById
+	academyFilters,
+	getPeriodQueryById,
+	getUniqueAcademyPeriods,
+	addOptionsToAcademyFilter
 } from '../../utils/utilities';
-import { PERIODS, STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT, STUDENTS_FILTER_ID } from '../../utils/config';
+import { STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT, ACADEMY_FILTER } from '../../utils/config';
 
 class StudentsView {
 	constructor() {
-		[constructElement('ul', '', { type: 'id', value: 'students-list' }), studentFilters(PERIODS)].forEach(el => {
+		[constructElement('ul', '', { type: 'id', value: 'students-list' }), academyFilters(new Set())].forEach(el => {
 			appendContentToParent(getElementDOM('#root'), el);
 		});
+	}
+
+	displayFilterOptions(academyPeriods) {
+		addOptionsToAcademyFilter(getElementDOM(ACADEMY_FILTER), getUniqueAcademyPeriods(academyPeriods));
 	}
 
 	bindDeleteStudent(handler) {
@@ -27,7 +33,7 @@ class StudentsView {
 	}
 
 	bindSelectAcademyPeriod(handler) {
-		getElementDOM(STUDENTS_FILTER_ID).addEventListener(EVENT_TYPES.CHANGE, event => {
+		getElementDOM(ACADEMY_FILTER).addEventListener(EVENT_TYPES.CHANGE, event => {
 			const periodId = event.target.value;
 			handler(getPeriodQueryById(periodId), this.displayAllStudents);
 		});
@@ -36,7 +42,7 @@ class StudentsView {
 	displayAllStudents(students) {
 		const studentsList = getElementDOM(STUDENTS_LIST_ID);
 		clearInnerContent(studentsList);
-		console.log(students);
+
 		students.forEach(student => {
 			if (student) {
 				appendContentToParent(studentsList, studentElement(student));

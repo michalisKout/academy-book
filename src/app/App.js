@@ -8,7 +8,9 @@ import Router from '../service/Router';
 import NavBar from './NavBar';
 
 function App() {
-	new NavBar(Router.navigate.bind(Router));
+	const router = new Router();
+	new NavBar(router);
+
 	const homeRouteConfig = {
 		controller: HomeController,
 		view: HomeView
@@ -19,10 +21,11 @@ function App() {
 		view: StudentsView,
 		model: StudentsModel
 	};
-	Router.route('/', homeRouteConfig);
-	Router.route('/students', studentsRouteConfig);
 
-	Router.navigate('/');
+	router.route('/', homeRouteConfig);
+	router.route('/students', studentsRouteConfig);
+
+	router.navigate('/');
 	return `<div>Academy Book</div>`;
 }
 

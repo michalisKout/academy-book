@@ -1,8 +1,8 @@
 import { getElementDOM } from '../utils/utilities';
 
 class NavBar {
-	constructor(navigateFn) {
-		this.navigateFn = navigateFn;
+	constructor(routerInstance) {
+		this.routerInstance = routerInstance;
 		this.render();
 	}
 
@@ -12,10 +12,10 @@ class NavBar {
 
 			switch (targetId) {
 				case 'home':
-					this.navigateFn('/');
+					this.routerInstance.navigate('/');
 					break;
 				case 'students':
-					this.navigateFn('/students');
+					this.routerInstance.navigate('/students');
 					break;
 				default:
 					break;

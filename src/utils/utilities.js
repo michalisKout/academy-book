@@ -1,9 +1,16 @@
 /* eslint-disable camelcase */
+import _ from 'lodash';
+
+export const clearInnerContent = element => {
+	element.innerHTML = '';
+};
+
 export const appendContentToParent = (parent, child) => {
 	parent.insertAdjacentHTML('afterbegin', child);
 };
 
 export const getElementDOM = query => document.querySelector(query);
+
 export const constructElement = (type, content = '', ...attrs) =>
 	`<${type} ${attrs.map(attr => `${attr.type}="${attr.value}"`)}>${content}</${type}>`;
 
@@ -32,6 +39,11 @@ export const studentElement = ({ id, first_name, last_name, DoB, image, studies 
     </li>`;
 };
 
+export const getUniqueAcademyPeriods = studentsList => {
+	const periods = studentsList.map(student => student.academy_period);
+	return new Set(periods);
+};
+
 export const studentsSearchResult = students => {
 	const content = students.map(({ id, first_name, last_name, DoB }) =>
 		id
@@ -52,21 +64,34 @@ export const studentsSearchResult = students => {
 
 export const emptySearchResult = () => '<div class="empty-search"></div>';
 
-export const clearInnerContent = element => {
-	element.innerHTML = '';
+export const addOptionsToAcademyFilter = (selectElement, academyPeriods) => {
+	selectElement.insertAdjacentHTML('beforeend', removesCommasFromElementList(convertSetToArray(academyPeriods)));
 };
 
-export const studentFilters = (academyPeriods = []) => {
-	const periodOptions = academyPeriods.map(
-		periodName => `<option value="${getPeriodId(periodName)}">${displayPeriod(periodName)}</option>`
-	);
-	return `<select id="student-filters">
+export const academyFilters = () => {
+	return `<select id="academy-filter">
 			<option value="">ALL STUDENTS</option>
-			${removesCommasFromElementList(periodOptions)}
 		</select>`;
 };
+
 export const getPeriodQueryById = periodId => periodId.split('_').join(' ');
+
+const convertSetToArray = list => {
+	const periodList = [];
+
+	if (_.isSet(list)) {
+		list.forEach(periodName => {
+			periodList.push(`<option value="${getPeriodId(periodName)}">${displayPeriod(periodName)}</option>`);
+		});
+
+		return periodList;
+	}
+
+	return list;
+};
+
 const displayPeriod = periodName => periodName.toUpperCase();
+
 const getPeriodId = periodName =>
 	periodName
 		.toLowerCase()

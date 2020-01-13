@@ -7,15 +7,9 @@ class HomeController {
 		this.bindStudentSearch();
 	}
 
-	updateView(students) {
-		this.homeView.displayAllStudents(students);
-	}
-
 	bindStudentSearch() {
 		this.homeView.bindInputStudent(this.searchData);
 	}
-
-	bindSelectPeriod() {}
 
 	searchData(searchText, displayFn) {
 		if (searchText) {

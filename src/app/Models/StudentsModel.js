@@ -42,7 +42,7 @@ class StudentsModel {
 
 	notifyAllControllers(students) {
 		this.controllers.forEach(controller => {
-			controller.updateView(students);
+			controller.render(students);
 		});
 	}
 }

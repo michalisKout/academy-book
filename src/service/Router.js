@@ -14,13 +14,15 @@ class Router {
 		return this.routes[key];
 	}
 
-	navigate(pathname) {
-		window.history.pushState({}, pathname, window.location.origin + pathname);
-		const { controller, view = null, model = null } = this.getRouteConfig(pathname);
-		clearInnerContent(this.rootDiv);
+	createController({ controller, view = null, model = null }) {
+		return new controller(view && new view(), model && new model());
+	}
 
-		new controller(view && new view(), model && new model());
+	navigate(pathname) {
+		clearInnerContent(this.rootDiv);
+		window.history.pushState({}, pathname, window.location.origin + pathname);
+		this.createController(this.getRouteConfig(pathname));
 	}
 }
 
-export default new Router();
+export default Router;

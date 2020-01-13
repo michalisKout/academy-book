@@ -8,23 +8,19 @@ class StudentsController {
 		this.bindStudentEvents();
 	}
 
-	updateView(students) {
-		this.studentsView.displayAllStudents(students);
-	}
-
 	bindStudentEvents() {
 		StudentsApi.getAllStudents(this.studentsModel.init.bind(this.studentsModel));
 		this.studentsView.bindDeleteStudent(this.studentsModel.removeStudentById.bind(this.studentsModel));
 		this.studentsView.bindSelectAcademyPeriod(this.selectPeriod);
 	}
 
-	// getUniqueAcademyPeriods() {
-	// 	const periods = this.studentsModel.getStudents().map(student => student.academy_period);
-	// 	return new Set(periods);
-	// }
-
 	selectPeriod(periodQuery, displayFn) {
 		StudentsApi.getStudentByFilter(periodQuery, displayFn);
+	}
+
+	render(students) {
+		this.studentsView.displayAllStudents(students);
+		this.studentsView.displayFilterOptions(students);
 	}
 }
 
