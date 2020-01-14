@@ -24,9 +24,9 @@ export const removesCommasFromElementList = elements =>
 		})
 		.join('');
 
-export const studentElement = ({ id, first_name, last_name, DoB, image, studies }) => {
+export const studentElement = ({ id, first_name, last_name, DoB, image, studies, comments }) => {
 	const allStudies = studies && studies.map(stud => constructElement('p', `⋆ ${stud}`));
-
+	const shouldDisplayComments = comments.length > 0 ? `<div>comments: ${comments.length}</div>` : '';
 	return `<li style="list-style:none" id="student_${id}">
 <hr/><button id="delete-student" data-id=${id}>delete</button>
       <img src="${image}"/>
@@ -34,7 +34,8 @@ export const studentElement = ({ id, first_name, last_name, DoB, image, studies 
       <div>Last Name: ${last_name}</div>
       <div>Date of Birth: ${DoB}</div>
       <h3>Studies</h3>
-      ${removesCommasFromElementList(allStudies)}
+	  ${removesCommasFromElementList(allStudies)}
+	  ${shouldDisplayComments}
       <hr/>
     </li>`;
 };
