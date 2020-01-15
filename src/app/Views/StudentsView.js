@@ -18,10 +18,6 @@ class StudentsView {
 		});
 	}
 
-	displayFilterOptions(academyPeriods) {
-		addOptionsToAcademyFilter(getElementDOM(ACADEMY_FILTER), getUniqueAcademyPeriods(academyPeriods));
-	}
-
 	bindDeleteStudent(handler) {
 		getElementDOM(STUDENTS_LIST_ID).addEventListener(EVENT_TYPES.CLICK, event => {
 			const targetElementId = event.target.id;
@@ -32,11 +28,25 @@ class StudentsView {
 		});
 	}
 
+	bindClickStudent(handler) {
+		getElementDOM(STUDENTS_LIST_ID).addEventListener(EVENT_TYPES.CLICK, event => {
+			const className = event.target.className;
+
+			if (className === 'student') {
+				handler(event.target.dataset.id);
+			}
+		});
+	}
+
 	bindSelectAcademyPeriod(handler) {
 		getElementDOM(ACADEMY_FILTER).addEventListener(EVENT_TYPES.CHANGE, event => {
 			const periodId = event.target.value;
 			handler(getPeriodQueryById(periodId), this.displayAllStudents);
 		});
+	}
+
+	displayFilterOptions(academyPeriods) {
+		addOptionsToAcademyFilter(getElementDOM(ACADEMY_FILTER), getUniqueAcademyPeriods(academyPeriods));
 	}
 
 	displayAllStudents(students) {

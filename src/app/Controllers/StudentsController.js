@@ -8,6 +8,12 @@ class StudentsController {
 		this.bindStudentEvents();
 	}
 
+	onLoad(students) {
+		console.log('on load');
+		this.studentsView.displayAllStudents(students);
+		this.studentsView.displayFilterOptions(students);
+	}
+
 	bindStudentEvents() {
 		StudentsApi.getAllStudents(this.studentsModel.init.bind(this.studentsModel));
 		this.studentsView.bindDeleteStudent(this.studentsModel.removeStudentById.bind(this.studentsModel));
@@ -19,8 +25,8 @@ class StudentsController {
 	}
 
 	render(students) {
+		console.log('on update');
 		this.studentsView.displayAllStudents(students);
-		this.studentsView.displayFilterOptions(students);
 	}
 }
 
