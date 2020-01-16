@@ -1,7 +1,9 @@
-class StudentsModel {
+import Observable from '../../utils/Observable';
+
+class StudentsModel extends Observable {
 	constructor() {
+		super();
 		this.students = [];
-		this.controllers = [];
 	}
 
 	getStudents() {
@@ -30,26 +32,6 @@ class StudentsModel {
 
 	deleteStudent(student) {
 		this.students.filter(std => std.id !== student.id);
-	}
-
-	registerController(controller) {
-		this.controllers.push(controller);
-	}
-
-	unregisterController(controller) {
-		this.controllers.filter(contr => contr !== controller);
-	}
-
-	notifyAllControllers(students) {
-		this.controllers.forEach(controller => {
-			controller.render(students);
-		});
-	}
-
-	initAllControllers(students) {
-		this.controllers.forEach(controller => {
-			controller.onLoad(students);
-		});
 	}
 }
 

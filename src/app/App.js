@@ -26,7 +26,7 @@ function App() {
 	router.route('/students', studentsRouteConfig);
 
 	router.navigate('/');
-	return `<div>Academy Book</div>`;
+	return ``;
 }
 
 export default App;

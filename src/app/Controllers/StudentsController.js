@@ -6,7 +6,6 @@ class StudentsController {
 		this.studentsView = studentsView;
 		this.studentsModel = studentsModel;
 		this.studentsModel.registerController(this);
-
 		this.bindStudentEvents();
 		this.bindViewEvents();
 	}

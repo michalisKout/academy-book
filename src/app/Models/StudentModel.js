@@ -1,11 +1,14 @@
-class StudentModel {
+import Observable from '../../utils/Observable';
+
+class StudentModel extends Observable {
 	constructor() {
+		super();
 		this.student = {};
 	}
 
 	setStudent(data) {
 		this.student = { ...this.student, ...data };
-		console.log(this.student);
+		this.initAllControllers(this.student);
 	}
 
 	getStudent() {

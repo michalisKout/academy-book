@@ -12,7 +12,8 @@ class HomeView {
 	constructor() {
 		[
 			constructElement('div', '', { type: 'id', value: 'search-result' }),
-			constructElement('input', '', { type: 'id', value: 'student' })
+			constructElement('input', '', { type: 'id', value: 'student' }),
+			constructElement('div', 'Academy Book Search')
 		].forEach(el => {
 			appendContentToParent(getElementDOM('#root'), el);
 		});
