@@ -5,6 +5,8 @@ class HomeController {
 	constructor(homeView) {
 		this.homeView = homeView;
 		this.bindStudentSearch();
+
+		//we add a model later to memoize students' data to reduce network fetches
 	}
 
 	bindStudentSearch() {
