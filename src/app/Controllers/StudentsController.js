@@ -1,7 +1,8 @@
 import StudentsApi from '../../service/StudentsAPI';
 
 class StudentsController {
-	constructor(studentsView, studentsModel) {
+	constructor(studentsView, studentsModel, router) {
+		this.router = router;
 		this.studentsView = studentsView;
 		this.studentsModel = studentsModel;
 		this.studentsModel.registerController(this);
@@ -19,12 +20,14 @@ class StudentsController {
 	bindStudentEvents() {
 		this.initStudents = this.initStudents.bind(this);
 		this.removeStudent = this.removeStudent.bind(this);
+
 		StudentsApi.getAllStudents(this.initStudents);
 	}
 
 	bindViewEvents() {
 		this.studentsView.bindDeleteStudent(this.removeStudent);
 		this.studentsView.bindSelectAcademyPeriod(this.selectPeriod);
+		this.studentsView.bindClickStudent(this.router);
 	}
 
 	initStudents(data) {
@@ -34,6 +37,7 @@ class StudentsController {
 	removeStudent(id) {
 		this.studentsModel.removeStudentById(id);
 	}
+
 	selectPeriod(periodQuery, displayFn) {
 		StudentsApi.getStudentByFilter(periodQuery, displayFn);
 	}

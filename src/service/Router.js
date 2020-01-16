@@ -15,13 +15,13 @@ class Router {
 	}
 
 	createController({ controller, view = null, model = null }) {
-		return new controller(view && new view(), model && new model());
+		return new controller(view && new view(), model && new model(), this);
 	}
 
-	navigate(pathname) {
+	navigate(pathname, pageId = '') {
 		clearInnerContent(this.rootDiv);
-		window.history.pushState({}, pathname, window.location.origin + pathname);
-		this.createController(this.getRouteConfig(pathname));
+		window.history.pushState({}, pathname, window.location.origin + pathname + pageId);
+		this.createController(this.getRouteConfig(pathname + pageId));
 	}
 }
 

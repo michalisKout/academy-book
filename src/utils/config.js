@@ -11,3 +11,4 @@ export const EVENT_TYPES = {
 	CHANGE: 'change'
 };
 export const STUDENTS_LIST_ID = '#students-list';
+export const STUDENT_CARD = '#student-card';

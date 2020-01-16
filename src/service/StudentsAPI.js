@@ -19,6 +19,11 @@ class StudentsAPI {
 		this.handlesDataFromUlr(url, handler);
 	}
 
+	async getStudentById(id, handler) {
+		const url = `${this.API_URL}${this.STUDENTS_URL}/${id}`;
+		this.handlesDataFromUlr(url, handler);
+	}
+
 	async handlesDataFromUlr(url, handler) {
 		try {
 			const data = await (await fetch(url)).json();

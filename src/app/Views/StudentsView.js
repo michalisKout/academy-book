@@ -9,6 +9,10 @@ import {
 	getUniqueAcademyPeriods,
 	addOptionsToAcademyFilter
 } from '../../utils/utilities';
+import StudentController from '../Controllers/StudentController';
+import StudentView from '../Views/StudentView';
+import StudentModel from '../Models/StudentModel';
+
 import { STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT, ACADEMY_FILTER } from '../../utils/config';
 
 class StudentsView {
@@ -28,12 +32,24 @@ class StudentsView {
 		});
 	}
 
-	bindClickStudent(handler) {
+	bindClickStudent(router) {
 		getElementDOM(STUDENTS_LIST_ID).addEventListener(EVENT_TYPES.CLICK, event => {
 			const className = event.target.className;
-
 			if (className === 'student') {
-				handler(event.target.dataset.id);
+				const studentId = event.target.id.split('_')[1];
+				const studentsPathname = `/student/${studentId}`;
+
+				const studentRouteConfig = {
+					controller: StudentController,
+					view: StudentView,
+					model: StudentModel,
+					state: {
+						studentId
+					}
+				};
+
+				router.route(studentsPathname, studentRouteConfig);
+				router.navigate(studentsPathname);
 			}
 		});
 	}

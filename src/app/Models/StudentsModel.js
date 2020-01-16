@@ -25,7 +25,7 @@ class StudentsModel {
 
 	init(data) {
 		this.students.push(...data);
-		this.notifyAllControllers(this.students);
+		this.initAllControllers(this.students);
 	}
 
 	deleteStudent(student) {
@@ -43,6 +43,12 @@ class StudentsModel {
 	notifyAllControllers(students) {
 		this.controllers.forEach(controller => {
 			controller.render(students);
+		});
+	}
+
+	initAllControllers(students) {
+		this.controllers.forEach(controller => {
+			controller.onLoad(students);
 		});
 	}
 }
