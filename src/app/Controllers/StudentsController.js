@@ -5,7 +5,9 @@ class StudentsController {
 		this.studentsView = studentsView;
 		this.studentsModel = studentsModel;
 		this.studentsModel.registerController(this);
+
 		this.bindStudentEvents();
+		this.bindViewEvents();
 	}
 
 	onLoad(students) {
@@ -15,11 +17,23 @@ class StudentsController {
 	}
 
 	bindStudentEvents() {
-		StudentsApi.getAllStudents(this.studentsModel.init.bind(this.studentsModel));
-		this.studentsView.bindDeleteStudent(this.studentsModel.removeStudentById.bind(this.studentsModel));
+		this.initStudents = this.initStudents.bind(this);
+		this.removeStudent = this.removeStudent.bind(this);
+		StudentsApi.getAllStudents(this.initStudents);
+	}
+
+	bindViewEvents() {
+		this.studentsView.bindDeleteStudent(this.removeStudent);
 		this.studentsView.bindSelectAcademyPeriod(this.selectPeriod);
 	}
 
+	initStudents(data) {
+		this.studentsModel.init(data);
+	}
+
+	removeStudent(id) {
+		this.studentsModel.removeStudentById(id);
+	}
 	selectPeriod(periodQuery, displayFn) {
 		StudentsApi.getStudentByFilter(periodQuery, displayFn);
 	}
