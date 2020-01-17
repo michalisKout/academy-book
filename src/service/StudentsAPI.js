@@ -24,6 +24,29 @@ class StudentsAPI {
 		this.handlesDataFromUlr(url, handler);
 	}
 
+	async updateStudentComments(student, comment, handler) {
+		const url = `${this.API_URL}${this.STUDENTS_URL}/${student.id}`;
+
+		const data = { comments: [...student.comments, comment] };
+		try {
+			const response = await fetch(url, {
+				method: 'PATCH',
+				mode: 'cors',
+				cache: 'no-cache',
+				credentials: 'same-origin',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				redirect: 'follow',
+				referrerPolicy: 'no-referrer',
+				body: JSON.stringify(data)
+			});
+			handler(await response.json());
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
 	async handlesDataFromUlr(url, handler) {
 		try {
 			const data = await (await fetch(url)).json();

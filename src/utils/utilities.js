@@ -40,6 +40,11 @@ export const studentElement = ({ id, first_name, last_name, DoB, image, studies,
     </li>`;
 };
 
+export const studentComments = ({ comments }) =>
+	`<div class="students__comments">${removesCommasFromElementList(
+		comments.length > 0 ? comments.map((comment, index) => `<div id="comment_${index}">${comment}</div>`) : ''
+	)}</div>`;
+
 export const getUniqueAcademyPeriods = studentsList => {
 	const periods = studentsList.map(student => student.academy_period);
 	return new Set(periods);

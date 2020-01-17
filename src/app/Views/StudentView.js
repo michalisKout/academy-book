@@ -3,7 +3,8 @@ import {
 	getElementDOM,
 	constructElement,
 	studentElement,
-	clearInnerContent
+	clearInnerContent,
+	studentComments
 } from '../../utils/utilities';
 import isEmpty from 'lodash/isEmpty';
 import { STUDENT_CARD } from '../../utils/config';
@@ -16,12 +17,30 @@ class StudentView {
 		);
 	}
 
+	bindCommentInput(handler) {
+		getElementDOM('#root').addEventListener('click', event => {
+			if (event.target.id === 'add-comment') {
+				handler(getElementDOM('#student-comment').value)();
+			}
+		});
+	}
+
+	displayComments(student) {
+		appendContentToParent(getElementDOM, studentElement(student));
+	}
+
 	displayStudent(student) {
 		const studentCard = getElementDOM(STUDENT_CARD);
 		clearInnerContent(studentCard);
 
 		if (!isEmpty(student)) {
+			appendContentToParent(studentCard, studentComments(student));
 			appendContentToParent(studentCard, studentElement(student));
+			appendContentToParent(
+				studentCard,
+				constructElement('button', 'add comment', { type: 'id', value: 'add-comment' })
+			);
+			appendContentToParent(studentCard, constructElement('input', '', { type: 'id', value: 'student-comment' }));
 		}
 	}
 }

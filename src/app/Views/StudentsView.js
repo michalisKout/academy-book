@@ -42,10 +42,7 @@ class StudentsView {
 				const studentRouteConfig = {
 					controller: StudentController,
 					view: StudentView,
-					model: StudentModel,
-					state: {
-						studentId
-					}
+					model: StudentModel
 				};
 
 				router.route(studentsPathname, studentRouteConfig);

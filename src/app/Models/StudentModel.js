@@ -11,6 +11,11 @@ class StudentModel extends Observable {
 		this.initAllControllers(this.student);
 	}
 
+	updateStudent(data) {
+		this.student = { ...this.student, ...data };
+		this.notifyAllControllers(this.student);
+	}
+
 	getStudent() {
 		return this.student;
 	}
