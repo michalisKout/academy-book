@@ -26,7 +26,9 @@ class StudentView {
 	}
 
 	displayComments(student) {
-		appendContentToParent(getElementDOM, studentElement(student));
+		const commentsContainer = getElementDOM('.students__comments');
+		clearInnerContent(commentsContainer);
+		appendContentToParent(commentsContainer, studentComments(student));
 	}
 
 	displayStudent(student) {

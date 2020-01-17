@@ -23,14 +23,12 @@ class StudentController {
 	}
 
 	render(student) {
-		this.studentView.displayStudent(student);
+		this.studentView.displayComments(student);
 	}
 
 	onLoad(student) {
 		this.studentView.displayStudent(student);
 	}
-
-	addStudentComment(student) {}
 }
 
 export default StudentController;
