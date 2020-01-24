@@ -19,6 +19,7 @@ class StudentsController {
 	bindStudentEvents() {
 		this.initStudents = this.initStudents.bind(this);
 		this.removeStudent = this.removeStudent.bind(this);
+		this.selectPeriod = this.selectPeriod.bind(this);
 
 		StudentsApi.getAllStudents(this.initStudents);
 	}
@@ -37,8 +38,9 @@ class StudentsController {
 		this.studentsModel.removeStudentById(id);
 	}
 
-	selectPeriod(periodQuery, displayFn) {
-		StudentsApi.getStudentByFilter(periodQuery, displayFn);
+	selectPeriod(periodQuery) {
+		const studentsHandler = this.studentsModel.setStudents.bind(this.studentsModel);
+		return () => StudentsApi.getStudentByFilter(periodQuery, studentsHandler);
 	}
 
 	render(students) {

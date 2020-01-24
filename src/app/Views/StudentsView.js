@@ -9,9 +9,6 @@ import {
 	getUniqueAcademyPeriods,
 	addOptionsToAcademyFilter
 } from '../../utils/utilities';
-import StudentController from '../Controllers/StudentController';
-import StudentView from '../Views/StudentView';
-import StudentModel from '../Models/StudentModel';
 
 import { STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT, ACADEMY_FILTER } from '../../utils/config';
 
@@ -35,17 +32,9 @@ class StudentsView {
 	bindClickStudent(router) {
 		getElementDOM(STUDENTS_LIST_ID).addEventListener(EVENT_TYPES.CLICK, event => {
 			const className = event.target.className;
-			if (className === 'student') {
+			if (className === 'student-img') {
 				const studentId = event.target.id.split('_')[1];
 				const studentsPathname = `/student/${studentId}`;
-
-				const studentRouteConfig = {
-					controller: StudentController,
-					view: StudentView,
-					model: StudentModel
-				};
-
-				router.route(studentsPathname, studentRouteConfig);
 				router.navigate(studentsPathname);
 			}
 		});
@@ -54,7 +43,7 @@ class StudentsView {
 	bindSelectAcademyPeriod(handler) {
 		getElementDOM(ACADEMY_FILTER).addEventListener(EVENT_TYPES.CHANGE, event => {
 			const periodId = event.target.value;
-			handler(getPeriodQueryById(periodId), this.displayAllStudents);
+			handler(getPeriodQueryById(periodId))();
 		});
 	}
 

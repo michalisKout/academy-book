@@ -1,9 +1,32 @@
 import { clearInnerContent, getElementDOM } from '../utils/utilities';
-
+import StudentsApi from '../service/StudentsAPI';
+import StudentController from '../app/Controllers/StudentController';
+import StudentView from '../app/Views/StudentView';
+import StudentModel from '../app/Models/StudentModel';
 class Router {
 	constructor() {
 		this.routes = {};
 		this.rootDiv = getElementDOM('#root');
+		this.students = [];
+		this.initStudentRoutes();
+	}
+
+	initStudentRoutes() {
+		StudentsApi.getAllStudents(incomingStudents => {
+			this.students = [...incomingStudents];
+			this.students.forEach(student => {
+				const studentRouteConfig = {
+					controller: StudentController,
+					view: StudentView,
+					model: StudentModel
+				};
+				const studentsPathname = `/student/${student.id}`;
+
+				this.route(studentsPathname, studentRouteConfig);
+			});
+			console.group('<== AVAILABLE ROUTES ==>');
+			console.log(this.routes);
+		});
 	}
 
 	route(pathname, config) {

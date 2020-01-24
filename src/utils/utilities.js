@@ -29,7 +29,7 @@ export const studentElement = ({ id, first_name, last_name, DoB, image, studies,
 	const shouldDisplayComments = comments && comments.length > 0 ? `<div>comments: ${comments.length}</div>` : '';
 	return `<li style="list-style:none" id="student_${id}" class="student">
 <hr/><button id="delete-student" data-id=${id}>delete</button>
-      <img src="${image}"/>
+	  <img class="student-img" id="student-img_${id}" src="${image}"/>
       <div>First Name: ${first_name}</div>
       <div>Last Name: ${last_name}</div>
       <div>Date of Birth: ${DoB}</div>
