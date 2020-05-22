@@ -1,5 +1,5 @@
 
-# This is an Web application made for booking information about Agile Actors #learning Academy's Students.
+# This is a Web application made for booking information about Agile Actors #learning Academy's Students.
 
 > Stack
 
