@@ -1,3 +1,25 @@
+
+# This is an Web application made for booking information about Agile Actors #learning Academy's Students.
+
+> Stack
+
+    - node 12.13.1
+    - npm 6.12.1
+    - React 16.12.0
+    - Jss
+    - StoryBook
+    - eslint
+    - commitlint
+
+> Implemented Features :
+
+    - Search on typing by query.
+    - Custom Routing (Home, Students) pages.
+    - Filter students by academy_period.
+    - Applied mvc pattern.
+    - Applied observer pattern.
+    - Applied Singleton pattern (Router, StudentsAPI).
+    
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -67,23 +89,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-# This is an Web application made for booking information about Agile Actors Academy's Students.
-
-> Stack
-
-    - node 12.13.1
-    - npm 6.12.1
-    - React 16.12.0
-    - Jss
-    - StoryBook
-    - eslint
-    - commitlint
-
-> Implemented Features :
-
-    - Search on typing by query.
-    - Custom Routing (Home, Students) pages.
-    - Filter students by academy_period.
-    - Applied mvc pattern.
-    - Applied observer pattern.
-    - Applied Singleton pattern (Router, StudentsAPI).
