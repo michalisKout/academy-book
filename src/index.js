@@ -1,4 +1,4 @@
-import './styles/index.css';
+import './styles/index-output.css';
 import App from './app/App';
 
 document.getElementById('root').insertAdjacentHTML('afterbegin', App());
