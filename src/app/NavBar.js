@@ -7,7 +7,7 @@ class NavBar {
 	}
 
 	bindNavigation() {
-		getElementDOM('body').addEventListener('click', event => {
+		getElementDOM('body').addEventListener('click', (event) => {
 			const targetId = event.target.id;
 
 			switch (targetId) {
@@ -26,10 +26,14 @@ class NavBar {
 	render() {
 		document.querySelector('body').insertAdjacentHTML(
 			'afterbegin',
-			`<div class="navbar" style="width:100%;position:fixed;top:0;right:0;background:#f0f0f0">
-            <button id="home">Home</button>
-            <button id="students">Students</button>
-        </div>`
+			`<ul class="flex border-b">
+				<li class="-mb-px mr-1">
+					<button id="home" class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold focus:outline-none">Home</button>
+				</li>
+				<li class="mr-1">
+					<button id="students" class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold focus:outline-none">Students</button>
+				</li>
+			</ul>`
 		);
 		this.bindNavigation();
 	}
