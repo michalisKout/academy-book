@@ -40,7 +40,7 @@ class StudentsView {
 	bindClickStudent(router) {
 		getElementDOM(STUDENTS_LIST_ID).addEventListener(EVENT_TYPES.CLICK, (event) => {
 			const className = event.target.className;
-			if (className.includes('student-img')) {
+			if (className.includes('student')) {
 				const studentId = event.target.id.split('_')[1];
 				const studentsPathname = `/student/${studentId}`;
 				router.navigate(studentsPathname);

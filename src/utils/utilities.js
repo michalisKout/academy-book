@@ -66,7 +66,7 @@ export const getUniqueAcademyPeriods = (studentsList) => {
 export const studentsSearchResult = (students) => {
 	const content = students.map(({ id, first_name, last_name, DoB }) =>
 		id
-			? `<div id="search-student-${id}" class="m-4 max-w-sm rounded overflow-hidden shadow-lg">
+			? `<div id="search-student-${id}" class="bg-red-200 m-4 max-w-sm rounded overflow-hidden shadow-lg">
 					<div class="px-6 py-4">
 						<div class="font-bold text-xl mb-2">${first_name} ${last_name}</div>
 						<div class="font-bold text-xl mb-2">Birthed on: ${DoB}</div>
@@ -112,6 +112,10 @@ const convertSetToArray = (list) => {
 	return list;
 };
 
-const displayPeriod = (periodName) => periodName.toUpperCase();
+function displayPeriod(periodName) {
+	return periodName.toUpperCase();
+}
 
-const getPeriodId = (periodName) => periodName.toLowerCase().trim().split(' ').join('_');
+function getPeriodId(periodName) {
+	return periodName.toLowerCase().trim().split(' ').join('_');
+}
