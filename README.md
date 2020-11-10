@@ -1,6 +1,7 @@
 
 # This is a Web application made for booking information about Agile Actors #learning Academy's Students.
 
+The project started as a POC for appling design patterns (mvc & observer) and building a pure - js project without frameworks or libraries.
 > Stack
 
     - node 12.13.1
