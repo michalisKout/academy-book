@@ -7,24 +7,11 @@ import {
 	studentsSearchResult,
 } from '../../utils/utilities';
 import { STUDENT_INPUT_ID, EVENT_TYPES, STUDENT_INPUT, SEARCH_RESULT_ID } from '../../utils/config';
+import { HOME_ELEMENTS} from "../constants";
 
 class HomeView {
 	constructor() {
-		[
-			constructElement('div', '', { type: 'id', value: 'search-result' }),
-			constructElement(
-				'input',
-				'',
-				{ type: 'id', value: 'student' },
-				{
-					type: 'class',
-					value:
-						'w-1/6 border-b border-b-2 border-teal-500 py-2 appearance-none bg-transparent text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none',
-				},
-				{ type: 'type', value: 'text' }
-			),
-			constructElement('div', 'Academy Book Search'),
-		].forEach((el) => {
+		HOME_ELEMENTS.map(constructElement).forEach((el) => {
 			appendContentToParent(getElementDOM('#root'), el);
 		});
 	}

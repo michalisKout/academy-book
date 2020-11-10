@@ -21,13 +21,17 @@ export const removesCommasFromElementList = (elements) =>
 		})
 		.join('');
 
-export const constructElement = (type, content = '', ...attrs) =>
+export const constructElement = ({type, content = '', attr = []}) =>
 	`<${type} ${removesCommasFromElementList(
-		attrs.map((attr) => `${attr.type}="${attr.value}"`)
+		attr.map((attr) => `${attr.type}="${attr.value}"`)
 	)}>${content}</${type}>`;
 
 export const studentElement = ({ id, first_name, last_name, DoB, image, studies, comments }) => {
-	const allStudies = studies && studies.map((stud) => constructElement('p', `⋆ ${stud}`));
+	const studiesElementConfig = (stud) => ({
+		type: 'p',
+		content: `⋆ ${stud}`
+	});
+	const allStudies = studies && studies.map((stud) => constructElement(studiesElementConfig(stud)));
 	const shouldDisplayComments =
 		comments && comments.length > 0 ? `<div>comments: ${comments.length}</div>` : '';
 	return `<li style="list-style:none" id="student_${id}" class="relative student m-4 w-1/4 flex-1 max-w-sm rounded overflow-hidden shadow-lg">

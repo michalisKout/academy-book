@@ -12,17 +12,19 @@ import {
 
 import { STUDENTS_LIST_ID, EVENT_TYPES, DELETE_STUDENT, ACADEMY_FILTER } from '../../utils/config';
 
+const STUDENTS_LIST_ELEMENT = {
+	type: 'ul',
+	content: '',
+	attr: [
+		{ type: 'id', value: 'students-list' },
+		{ type: 'class', value: 'flex mb-4' }
+	]
+}
+
 class StudentsView {
 	constructor() {
-		[
-			constructElement(
-				'ul',
-				'',
-				{ type: 'id', value: 'students-list' },
-				{ type: 'class', value: 'flex mb-4' }
-			),
-			academyFilters(new Set()),
-		].forEach((el) => {
+		[constructElement(STUDENTS_LIST_ELEMENT),academyFilters(new Set())]
+			.forEach((el) => {
 			appendContentToParent(getElementDOM('#root'), el);
 		});
 	}
