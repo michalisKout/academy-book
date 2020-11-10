@@ -39,17 +39,18 @@ class StudentView {
         clearInnerContent(studentCard);
 
         if (!isEmpty(student)) {
-            appendContentToParent(studentCard, studentComments(student));
-            appendContentToParent(studentCard, studentElement(student));
-            appendContentToParent(
-                studentCard,
-                constructElement(ADD_COMMENT_BTN)
-            );
-            appendContentToParent(
-                studentCard,
+            const elementsToAppend = [studentComments(student),
+                studentElement(student),
+                constructElement(ADD_COMMENT_BTN),
                 constructElement(COMMENT)
-            );
+            ];
+            this.appendElementsToCard(elementsToAppend, studentCard)
         }
+    }
+
+    appendElementsToCard(elementsList, card) {
+        elementsList.forEach(el => appendContentToParent(card, el))
+
     }
 }
 
